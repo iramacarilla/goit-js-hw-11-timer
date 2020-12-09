@@ -1,12 +1,12 @@
 class CountdownTimer {
     constructor ({targetDate, selector}) {
-        this.targetDate= targetDate.getTime()
-        this.daysRef = document.querySelector('[data-value="days"]')
-        this.hoursRef = document.querySelector('[data-value="hours"]')
-        this.minutesRef = document.querySelector('[data-value="mins"]')
-        this.secondsRef = document.querySelector('[data-value="secs"]')
+        this.targetDate = targetDate.getTime()
+        //this.daysRef = document.querySelector('[data-value="days"]')
+       // this.hoursRef = document.querySelector('[data-value="hours"]')
+        //this.minutesRef = document.querySelector('[data-value="mins"]')
+        //this.secondsRef = document.querySelector('[data-value="secs"]')
         this.selector = document.querySelector(selector)
-        this.days = ''
+       this.days = ''
         this.hours = ''
         this.minutes = ''
         this.seconds = ''
@@ -33,17 +33,18 @@ class CountdownTimer {
         return new Date().getTime()
     }
     displayData() {
-        this.daysRef.textContent = this.days;
-        this.hoursRef.textContent = this.hours;
-        this.minutesRef.textContent = this.minutes;
-        this.secondsRef.textContent = this.seconds;
+        this.selector.querySelector('[data-value="days"]').textContent = this.days;
+        this.selector.querySelector('[data-value="hours"]').textContent = this.hours;
+        this.selector.querySelector('[data-value="mins"]').textContent = this.minutes;
+        this.selector.querySelector('[data-value="secs"]').textContent = this.seconds;
 
        if (this.time < 0) {
           this.selector.textContent = 'Time is over!';
           clearInterval(this.counter())
         } 
+     
     }
-    init() {
+    init() { 
         return this.counter()
     }
 }
@@ -53,3 +54,16 @@ const countDown = new CountdownTimer({
     targetDate: new Date('Jul 17, 2021'),
   });
   countDown.init()
+
+  const countDownDown = new CountdownTimer({
+    selector: '#timer-2',
+    targetDate: new Date('Dec 29, 2022'),
+  });
+  countDownDown.init()
+
+  const countUpp = new CountdownTimer({
+    selector: '#timer-3',
+    targetDate: new Date('Jul 17, 2019'),
+  });
+  countUpp.init()
+  
